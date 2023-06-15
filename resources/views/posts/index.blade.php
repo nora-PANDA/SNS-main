@@ -4,7 +4,7 @@
   <img class="user-icon" src="images/icon1.png"><!--アイコン表示したい-->
   {!! Form::open(['url' => 'post/create']) !!}
     <div class="post-form">
-      {{Form::textarea('newpost', null, ['required','class' => 'post','placeholder' => '投稿内容を入力してください。'])}}
+      {{Form::input('text', 'newpost', null, ['required','class' => 'post','placeholder' => '投稿内容を入力してください。'])}}
     </div>
     <button type="submit" class=""><img src="images/post.png" alt="送信"></button>
   {!! Form::close() !!}

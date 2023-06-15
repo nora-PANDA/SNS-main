@@ -9,7 +9,8 @@ class Post extends Model
     protected $fillable = [
         'post'
     ];
-    //public function users(){
-      //return $this->hasMany('App/User');
-    //}
+
+    public function users(){
+      return $this->hasMany('App\User');
+    }
 }

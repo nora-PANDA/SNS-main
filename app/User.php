@@ -2,12 +2,22 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Illuminate\Notifications\Notifiable;
+//use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as UserContract;
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model implements UserContract
 {
-    use Notifiable;
+    use Authenticatable;
+//}
+
+//class User extends Authenticatable
+//{
+    //use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +37,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function posts(){
+        return $this->belongsTo('App\Post');
+    }
+
+}
+
+//↓？違う
+//class User extends Model
+//{
     //public function posts(){
         //return $this->belongsTo('App\Post');
     //}
-}
+//}

@@ -17,7 +17,7 @@ class PostsController extends Controller
     //投稿機能
     public function create(Request $request)
     {
-        $post = $request->textarea('newpost');
+        $post = $request->input('newpost');
         Post::create(['posts' => $post]);
         return redirect('/top');
     }
