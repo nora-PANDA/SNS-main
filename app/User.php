@@ -37,16 +37,13 @@ class User extends Model implements UserContract
         'password', 'remember_token',
     ];
 
+
     public function posts(){
-        return $this->belongsTo('App\Post');
+        return $this->hasMany('App\Post');
     }
 
-}
-
-//↓？違う
-//class User extends Model
-//{
     //public function posts(){
         //return $this->belongsTo('App\Post');
     //}
-//}
+
+}

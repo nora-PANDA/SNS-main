@@ -4,9 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Config;
+
 
 class PostsController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     //表示(後でやる)
     public function index(){
         $list = Post::get();
@@ -18,7 +27,12 @@ class PostsController extends Controller
     public function create(Request $request)
     {
         $post = $request->input('newpost');
-        Post::create(['posts' => $post]);
+        $user_id = Auth::id();
+        Post::create(
+            [
+                'posts' => $post,
+                'user_id' => $user_id,
+            ]);
         return redirect('/top');
     }
 
