@@ -16,21 +16,25 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    //表示(後でやる)
+    //表示
     public function index(){
-        $list = Post::get();
-        return view('posts.index');
+        $posts = post::orderBy('created_at')->get();
+        return view('posts.index', compact(''));
+
+        //$lists = Post::get();
+        //return view('posts.index', compact(''));
     }
+
 //とりあえず消しとく（）（,['posts'=>$list]）
 
-    //投稿機能
+    //投稿機能〇
     public function create(Request $request)
     {
         $post = $request->input('newpost');
         $user_id = Auth::id();
         Post::create(
             [
-                'posts' => $post,
+                'post' => $post,
                 'user_id' => $user_id,
             ]);
         return redirect('/top');
